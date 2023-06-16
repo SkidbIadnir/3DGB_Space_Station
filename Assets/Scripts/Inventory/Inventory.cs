@@ -117,7 +117,7 @@ public class Inventory : MonoBehaviour
     #region RemoveItem
     public bool RemoveItem(Item item, int amount = 0) {
         List<ItemSlot> slots = GetItemSlots(item);
-        if (null == slots) {
+        if (0 == slots.Count) {
             Debug.Log($"No {item.GetItemSO().itemName} in this inventory.");
             return false;
         }
@@ -128,16 +128,18 @@ public class Inventory : MonoBehaviour
             // Remove a certain amount of an item
             slots.Reverse();
             int leftAmount = amount;
+            Debug.Log(leftAmount);
             foreach (ItemSlot slot in slots) {
-                int available = slot.GetItem().GetItemSO().maxStack - slot.GetAmount();
-                leftAmount -= available;
-                if (0 > leftAmount) {
-                    slot.RemoveAmount(available + leftAmount);
+                int available = slot.GetAmount();
+                if (available >= leftAmount) {
+                    slot.RemoveAmount(leftAmount);
                     break;
                 } else {
-                    _container.Remove(slot);
+                    slot.RemoveAmount(available);
+                    leftAmount -= available;
                 }
             }
+            foreach (ItemSlot slot in slots) if (0 == slot.GetAmount()) _container.Remove(slot);
         }
         return true;
     }

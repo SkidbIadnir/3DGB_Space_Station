@@ -11,4 +11,9 @@ public class InventoryTest : MonoBehaviour
         bool res = inventory.AddItem(defaultItem, amount, out int remain);
         Debug.Log($"{res}: {remain}");
     }
+
+    public void RemoveDefaultItem(int amount) {
+        bool res = inventory.RemoveItem(defaultItem, amount);
+        Debug.Log(res);
+    }
 }
