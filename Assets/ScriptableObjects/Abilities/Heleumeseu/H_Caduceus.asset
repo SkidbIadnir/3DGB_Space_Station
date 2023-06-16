@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01811f37a7ea94746bdeb5a532d585e0, type: 3}
+  m_Name: H_Caduceus
+  m_EditorClassIdentifier: 
+  _name: Caduceus
+  description: Switch between poisoning and healing magic.
+  sprite: {fileID: 2088882562, guid: 20aa4156f0ea3c74fbe3bf768e99db8e, type: 3}
+  countdown:
+    _seconds: 1
+    _minutes: 0
+    _hours: 0
+  instant: 1
+  duration:
+    _seconds: 0
+    _minutes: 0
+    _hours: 0
+  repeatable: 0
+  repeatTime:
+    _seconds: 0
+    _minutes: 0
+    _hours: 0
+  instantEffects: []
+  statusEffects: []

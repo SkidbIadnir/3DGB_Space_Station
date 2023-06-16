@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01811f37a7ea94746bdeb5a532d585e0, type: 3}
+  m_Name: J_Carnage_SO
+  m_EditorClassIdentifier: 
+  _name: Dash
+  description: 'Straight line dash with fixed range that deals damage to all targets
+    you pass through. '
+  sprite: {fileID: 1368682892, guid: cd399ac5b0ba1674d83de9a41c5d8e0f, type: 3}
+  countdown:
+    _seconds: 10
+    _minutes: 0
+    _hours: 0
+  instant: 0
+  duration:
+    _seconds: 5
+    _minutes: 0
+    _hours: 0
+  repeatable: 1
+  repeatTime:
+    _seconds: 1
+    _minutes: 0
+    _hours: 0
+  onContact: 0
+  instantEffects:
+  - target: 1
+    effect:
+      value: 5
+      type: 0
+      fixedValue: 0
+      percentageValue: 0
+  statusEffects: []

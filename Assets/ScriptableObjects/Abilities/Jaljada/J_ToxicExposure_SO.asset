@@ -1,0 +1,103 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01811f37a7ea94746bdeb5a532d585e0, type: 3}
+  m_Name: J_ToxicExposure_SO
+  m_EditorClassIdentifier: 
+  _name: Toxic Exposure
+  description: Dips the syringes in a toxic solution adding temporary damage to any
+    of your attacks.
+  sprite: {fileID: 1185632816, guid: cd399ac5b0ba1674d83de9a41c5d8e0f, type: 3}
+  countdown:
+    _seconds: 20
+    _minutes: 0
+    _hours: 0
+  instant: 0
+  duration:
+    _seconds: 0
+    _minutes: 0
+    _hours: 0
+  repeatable: 0
+  repeatTime:
+    _seconds: 0
+    _minutes: 0
+    _hours: 0
+  onContact: 0
+  instantEffects: []
+  statusEffects:
+  - target: 1
+    effect:
+      _name: Toxic Solution
+      _description: Inflige damage overtimes
+      _sprite: {fileID: 1161064523, guid: cd399ac5b0ba1674d83de9a41c5d8e0f, type: 3}
+      valueType: 0
+      value: 5
+      status: 1
+      fixedValue: 1
+      percentageValue: 0
+      repeatable: 1
+      infinite: 0
+      duration:
+        _timeRequired:
+          _seconds: 15
+          _minutes: 0
+          _hours: 0
+        _current:
+          _seconds: 15
+          _minutes: 0
+          _hours: 0
+        _decreasing: 1
+        started: 0
+      repeatTime:
+        _timeRequired:
+          _seconds: 1
+          _minutes: 0
+          _hours: 0
+        _current:
+          _seconds: 0
+          _minutes: 0
+          _hours: 0
+        _decreasing: 0
+        started: 0
+  - target: 0
+    effect:
+      _name: Toxic Exposure
+      _description: Add temprary damage to your attaks.
+      _sprite: {fileID: 1185632816, guid: cd399ac5b0ba1674d83de9a41c5d8e0f, type: 3}
+      valueType: 0
+      value: 0
+      status: 0
+      fixedValue: 1
+      percentageValue: 0
+      repeatable: 0
+      infinite: 0
+      duration:
+        _timeRequired:
+          _seconds: 10
+          _minutes: 0
+          _hours: 0
+        _current:
+          _seconds: 10
+          _minutes: 0
+          _hours: 0
+        _decreasing: 1
+        started: 0
+      repeatTime:
+        _timeRequired:
+          _seconds: 1
+          _minutes: 0
+          _hours: 0
+        _current:
+          _seconds: 0
+          _minutes: 0
+          _hours: 0
+        _decreasing: 0
+        started: 0
