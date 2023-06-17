@@ -8,7 +8,8 @@ public enum StatType {
     HP_MAX,
     Attack,
     Defense,
-    MovementSpeed
+    MovementSpeed,
+    JumpForce
 };
 
 [Serializable]
@@ -20,10 +21,10 @@ public class Stats
     // Default constructor
     public Stats() {
         source = new FYU_Stats_Dictionary(new Dictionary<StatType, int>() { 
-            { StatType.HP, 1}, { StatType.HP_MAX, 1}, { StatType.Attack, 0}, { StatType.Defense, 0}, { StatType.MovementSpeed, 2}});
+            { StatType.HP, 1}, { StatType.HP_MAX, 100}, { StatType.Attack, 0}, { StatType.Defense, 0}, { StatType.MovementSpeed, 2}, { StatType.JumpForce, 2}});
         source.Start();
         total = new FYU_Stats_Dictionary(new Dictionary<StatType, int>() { 
-            { StatType.HP, 0}, { StatType.HP_MAX, 0}, { StatType.Attack, 0}, { StatType.Defense, 0}, { StatType.MovementSpeed, 2}});
+            { StatType.HP, 0}, { StatType.HP_MAX, 0}, { StatType.Attack, 0}, { StatType.Defense, 0}, { StatType.MovementSpeed, 2}, { StatType.JumpForce, 2}});
         total.Start();
         CheckValues(total);
         UpToStats();
@@ -32,7 +33,7 @@ public class Stats
         source = new FYU_Stats_Dictionary(stats);
         source.Start();
         total = new FYU_Stats_Dictionary(new Dictionary<StatType, int>() { 
-            { StatType.HP, 0}, { StatType.HP_MAX, 0}, { StatType.Attack, 0}, { StatType.Defense, 0}, { StatType.MovementSpeed, 2}
+            { StatType.HP, 0}, { StatType.HP_MAX, 0}, { StatType.Attack, 0}, { StatType.Defense, 0}, { StatType.MovementSpeed, 2}, { StatType.JumpForce, 2}
         });
         total.Start();
         CheckValues(total);
@@ -43,12 +44,12 @@ public class Stats
         // Reset if not completed
         if (4 != source.Count())
             source = new FYU_Stats_Dictionary(new Dictionary<StatType, int>() { 
-                { StatType.HP, 1}, { StatType.HP_MAX, 1}, { StatType.Attack, 0}, { StatType.Defense, 0}, { StatType.MovementSpeed, 2}});
+                { StatType.HP, 1}, { StatType.HP_MAX, 100}, { StatType.Attack, 0}, { StatType.Defense, 0}, { StatType.MovementSpeed, 2}, { StatType.JumpForce, 2}});
         else source.Start();
 
         // Total should not be manipulated before Start
         total = new FYU_Stats_Dictionary(new Dictionary<StatType, int>() { 
-            { StatType.HP, 0}, { StatType.HP_MAX, 0}, { StatType.Attack, 0}, { StatType.Defense, 0}, { StatType.MovementSpeed, 2}});
+            { StatType.HP, 0}, { StatType.HP_MAX, 0}, { StatType.Attack, 0}, { StatType.Defense, 0}, { StatType.MovementSpeed, 2}, { StatType.JumpForce, 2}});
         total.Start();
         CheckValues(total);
         UpToStats();

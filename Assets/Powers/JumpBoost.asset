@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fafafdbe29edc13468a2d893add0fee2, type: 3}
-  m_Name: SpeedBoost
+  m_Name: JumpBoost
   m_EditorClassIdentifier: 
-  _name: SpeedBoost
-  description: Augment your speed by 50%
+  _name: Jump Boost
+  description: Allows the user to jump higher
   sprite: {fileID: 0}
   countdown:
     _seconds: 0
-    _minutes: 1
+    _minutes: 0
     _hours: 0
   repeatable: 0
   repeatTime:
@@ -26,11 +26,11 @@ MonoBehaviour:
     _hours: 0
   instantEffects: []
   statusEffects:
-  - _name: Speed Boost
-    _description: Augment your speed by 50%
+  - _name: Jump Boost
+    _description: Allows the user to jump higher
     _sprite: {fileID: 0}
-    valueType: 4
-    value: 5
+    valueType: 5
+    value: 2
     status: 0
     fixedValue: 1
     percentageValue: 0
@@ -42,11 +42,11 @@ MonoBehaviour:
         _minutes: 1
         _hours: 0
       _current:
-        _seconds: 0
+        _seconds: 16
         _minutes: 0
         _hours: 0
       _decreasing: 0
-      started: 0
+      started: 1
     repeatTime:
       _timeRequired:
         _seconds: 0

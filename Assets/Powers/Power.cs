@@ -15,8 +15,10 @@ public class Power : MonoBehaviour
 
     public void UsePowerUp()
     {
-        Debug.Log(player.stats.total[effect.statusEffects[0].valueType]);
-        player.ApplyStatus(effect.statusEffects[0]);
+        if (effect.statusEffects.Count > 0)
+            player.ApplyStatus(effect.statusEffects[0]);
+        else
+            player.stats.AddEffect(effect.instantEffects[0].valueType, effect.instantEffects[0].Calculate(player.stats));
         number -= 1;
     }
 

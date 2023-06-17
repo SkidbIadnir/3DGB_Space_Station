@@ -28,6 +28,7 @@ public class InstantEffect
 
     [Header("Type")]
     public InstantEffectType type;
+    public StatType valueType;
     [SerializeField] bool fixedValue = false; // regardless of stats like attack and defense
     [SerializeField] bool percentageValue = false; // effect on percentage(e.g. 50% of HP)
 
