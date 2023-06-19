@@ -13,6 +13,7 @@ public class Inventory : MonoBehaviour
 {
     [Header("General")]
     [SerializeField] List<ItemSlot> _container = new List<ItemSlot>();
+    public DisplayInventory ui;
 
     [Header("Settings")]
     public int inventorySize;
@@ -20,16 +21,23 @@ public class Inventory : MonoBehaviour
     [Header("Market")]
     int _money = 0;
 
-    public event EventHandler OnItemAdded;
-    public event EventHandler OnItemRemoved;
-    public event EventHandler OnItemUpdated;
+    // public event EventHandler OnItemAdded;
+    // public event EventHandler OnItemRemoved;
+    public event EventHandler OnInventoryUpdated;
 
+    #region General
     List<ItemSlot> GetItemSlots(Item item) {
         List<ItemSlot> slots = new List<ItemSlot>();
         foreach (ItemSlot slot in _container)
             if (slot.GetItem() == item) slots.Add(slot);
         return slots;
     }
+    public List<ItemSlot> GetItems() { return _container; }
+    public void ClearInventory() {
+        _container.Clear();
+        ui.Inventory_OnInventoryUpdated();
+    }
+    #endregion
 
     #region AddItem
     public bool AddItem(Item item, int amount, out int remain) {
@@ -46,21 +54,26 @@ public class Inventory : MonoBehaviour
             if (item.GetItemSO().maxStack >= amount) {
                 // The amount is smaller than the max stack
                 _container.Add(new ItemSlot(item, amount));
+                ui.Inventory_OnInventoryUpdated();
                 return true;
             } else {
                 // The amount added is bigger than the max stack, need more slots
                 bool res = TryToAddMoreSlots(item, amount, out int last);
                 remain = last;
+                ui.Inventory_OnInventoryUpdated();
                 return res;
             }
         } else {
             // The inventory already contains the item
+            Debug.Log($"a{amount}");
             if (!FillSlotAvailable(slots, amount, out int leftAmount)) {
                 // Max stack is reached
                 bool res = TryToAddMoreSlots(item, leftAmount, out int last);
                 remain = last;
+                ui.Inventory_OnInventoryUpdated();
                 return res;
             }
+            ui.Inventory_OnInventoryUpdated();
             // } else {
             //     // Max stack is not reached
             //     slot.AddAmount(amount);
@@ -88,10 +101,15 @@ public class Inventory : MonoBehaviour
     }
 
     bool TryToAddMoreSlots(Item item, int amount, out int remain) {
-        Debug.Log($"amount: {amount}");
+        Debug.Log($"amount: {amount} {item.GetItemSO().maxStack} {1 == item.GetItemSO().maxStack}");
         int maxStack = item.GetItemSO().maxStack;
         int slotNeeded = 1;
-        if (maxStack < amount) slotNeeded = maxStack / amount + maxStack % amount;
+        if (1 == maxStack) {
+            slotNeeded = amount;
+            Debug.Log("here");
+        }
+        else if (maxStack < amount) slotNeeded = amount / maxStack + amount % maxStack;
+        Debug.Log($"{amount / maxStack} + {amount % maxStack}");
         remain = amount;
 
         Debug.Log($"Trying to add {slotNeeded} new slots for {item.GetItemSO().itemName}...");
@@ -141,17 +159,32 @@ public class Inventory : MonoBehaviour
             }
             foreach (ItemSlot slot in slots) if (0 == slot.GetAmount()) _container.Remove(slot);
         }
+        ui.Inventory_OnInventoryUpdated();
         return true;
     }
     #endregion
 
     #region Market
-    public bool Buy() {
-        throw new NotImplementedException();
-    }
-    public bool Sell() {
-        throw new NotImplementedException();
-    }
+    // public bool Buy(Item item) {
+    //     Item_SO so = item.GetItemSO();
+    //     if (so.cost > _money) {
+    //         Debug.Log("Not enought money.");
+    //         return false;
+    //     }
+    //     _money -= so.cost;
+    //     return true;
+    // }
+    // public bool Buy(Item_SO so) {
+    //     if (so.cost > _money) {
+    //         Debug.Log("Not enought money.");
+    //         return false;
+    //     }
+    //     _money -= so.cost;
+    //     return true;
+    // }
+    // public bool Sell() {
+    //     throw new NotImplementedException();
+    // }
     #endregion
 
     #region Money
